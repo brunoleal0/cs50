@@ -23,7 +23,8 @@ int main(void)
     int age=20;
     int age2=20;
     int age3=age;
-    int *pAge = &age;
+    int *pAge = NULL; // criando um pointer
+    pAge = &age;
     printf("age= %i | age= %p | age2= %i | age2= %p | age3= %i | age3= %p | pAge= %i | pAge= %p\n",age,&age,age2,&age2,age3,&age3,*pAge,&pAge);
     age = 21;
     printf("age= %i | age= %p | age2= %i | age2= %p | age3= %i | age3= %p | pAge= %i | pAge= %p\n",age,&age,age2,&age2,age3,&age3,*pAge,&pAge);
