@@ -1,3 +1,5 @@
+//cheat sheet incluindo (mas não limitando) as principais informações do seguinte curso: https://www.youtube.com/watch?v=LfaMVlDaQ24
+
 #include <stdio.h>
 #include <stdlib.h> 
 
@@ -19,7 +21,7 @@ int main(void)
         printf("v[%i]=%i\n",i,v[i]);
     }
 
-    //POINTERS <- & retorna o Memory Adress de qualquer variável e * "Dereferencia" um pointer //https://youtu.be/2GDiXG5RfNE?t=489
+    //POINTERS <- & retorna o Memory Adress de qualquer variável e * "Dereferencia" um pointer //https://youtu.be/2GDiXG5RfNE?t=404
     printf("\n-------POINTERS-------\n");
     int *pAge = NULL;
     int age = 20;
