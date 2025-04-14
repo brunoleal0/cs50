@@ -19,41 +19,42 @@ int main(void)
         printf("v[%i]=%i\n",i,v[i]);
     }
 
-    //POINTERS <- & puxa o Memory Adress e * vai pro valor daquele Memory Adress //https://youtu.be/2GDiXG5RfNE?t=489
+    //POINTERS <- & retorna o Memory Adress de qualquer variável e * "Dereferencia" um pointer //https://youtu.be/2GDiXG5RfNE?t=489
     printf("\n-------POINTERS-------\n");
-    int age = 20;
     int *pAge = NULL;
+    int age = 20;
     printf("int age = 20;\nint *pAge = NULL;\n");
 
     // printf("%f",*pAge); //Não dá pra derefenciar algo que ainda não tem referência
-    printf("____________  _____________________    ____________________    _____________________\n");
-    printf("VariableName |    Memory Adress    |  |    Value Stored    |  | Dereference Pointer |\n");
-    printf("    age      |  %p   |  |         %i         |  |                     |\n",&age,age);
-    printf("    pAge     |  %p   |  |  %p  |  |  Segmentation Fault |\n",&pAge,pAge);
+    printf("____________  ______________________    ______________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
+    printf("    pAge     |   %p   |  |   %p   |  |  Segmentation Fault |\n",&pAge,pAge);
+    printf("    age      |   %p   |  |          %i          |  |                     |\n",&age,age);
 
     printf("\npAge = &age;\n");
     pAge = &age;
 
-    printf("____________  _____________________    ____________________    _____________________\n");
-    printf("VariableName |    Memory Adress    |  |    Value Stored    |  | Dereference Pointer |\n");
-    printf("    age      |  %p   |  |         %i         |  |                     |\n",&age,age);
-    printf("    pAge     |  %p   |  |  %p  |  |         %i          |\n",&pAge,pAge,*pAge);
+    printf("____________  ______________________    ______________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
+    printf("    pAge     |   %p   |  |---%p---|  |         %i          |\n",&pAge,pAge,*pAge);
+    printf("    age      |---%p---|  |          %i          |  |                     |\n",&age,age);
 
     printf("\n*pAge = 21;\n");
     *pAge = 21;
 
-    printf("____________  _____________________    ____________________    _____________________\n");
-    printf("VariableName |    Memory Adress    |  |    Value Stored    |  | Dereference Pointer |\n");
-    printf("    age      |  %p   |  |         %i         |  |                     |\n",&age,age);
-    printf("    pAge     |  %p   |  |  %p  |  |         %i          |\n",&pAge,pAge,*pAge);
+    printf("____________  ______________________    ______________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
+    printf("    pAge     |   %p   |  |   %p   |  |         %i          |\n",&pAge,pAge,*pAge);
+    printf("    age      |   %p   |  |          %i          |  |                     |\n",&age,age);
 
     printf("\n*age = 22;\n");
     age = 22;
 
-    printf("____________  _____________________    ____________________    _____________________\n");
-    printf("VariableName |    Memory Adress    |  |    Value Stored    |  | Dereference Pointer |\n");
-    printf("    age      |  %p   |  |         %i         |  |                     |\n",&age,age);
-    printf("    pAge     |  %p   |  |  %p  |  |         %i          |\n\n",&pAge,pAge,*pAge);
+    printf("____________  ______________________    ______________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
+    printf("    pAge     |   %p   |  |   %p   |  |         %i          |\n",&pAge,pAge,*pAge);
+    printf("    age      |   %p   |  |          %i          |  |                     |\n",&age,age);
+    printf("\n");
 
     printf("\nSWAP WRONG\n");
     int a=1;
@@ -69,6 +70,11 @@ int main(void)
     swap_right(&c,&d);
     printf("swap_right: c=%i d=%i\n",c,d);
 
+    // int number_typed;
+    // printf("Digite um Número: \n");
+    // scanf("%d",&number_typed); //scan f pede como argumento o Memory Adress da variável
+    // printf("Número digitado= %d",number_typed);2
+
     //STRINGS = Dois tipos: Character Pointer ou Array de Caracteres (Ambos têm \0 no final pra identificar o final da strng)
     printf("\n-------STRINGS-------\n");
     char singlecharacter='e';
@@ -80,9 +86,9 @@ int main(void)
     s1 = "uhul1"; //<- SALVA "uhul!\0" na memória e aponta para o começo do caractere u
 
     printf("char *s1 = NULL;\ns1 = \"uhul1\";\n");
-    printf("____________  _____________________    ____________________    _____________________    _____________________    _____________________    _____________________    _____________________    _____________________\n");
-    printf("VariableName |    Memory Adress    |  |    Value Stored    |  | Dereference Pointer |  |Dereference Pointer+1|  |Dereference Pointer+2|  |Dereference Pointer+3|  |Dereference Pointer+4|  |Dereference Pointer+5|\n");
-    printf("    s1       |  %p   |  |         %s      |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |\n",s1,s1,*s1,*(s1+1),*(s1+2),*(s1+3),*(s1+4),*(s1+5));
+    printf("____________  ______________________    ____________________    _____________________    _____________________    _____________________    _____________________    _____________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored    |  | Dereference Pointer |  |Dereference Pointer+1|  |Dereference Pointer+2|  |Dereference Pointer+3|  |Dereference Pointer+4|  |Dereference Pointer+5|\n");
+    printf("    s1       |   %p   |  |         %s      |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c          |\n",s1,s1,*s1,*(s1+1),*(s1+2),*(s1+3),*(s1+4),*(s1+5));
     printf("\n");
     for (int i=0;i<10;i++){
         printf("caractere de *(s1+%i)=%c, o código desse caractere é %i, o memory adress desse caractere é %p\n",i,*(s1+i),*(s1+i),(s1+i));
@@ -94,10 +100,10 @@ int main(void)
     char s2[]="uhul2";
 
     printf("char s2 = \"uhul2\";\n");
-    printf("____________  _____________________    ____________________    _____________________    _____________________    _____________________    _____________________    _____________________    _____________________\n");
-    printf("VariableName |    Memory Adress    |  |    Value Stored    |  | Dereference Pointer |  |Dereference Pointer+1|  |Dereference Pointer+2|  |Dereference Pointer+3|  |Dereference Pointer+4|  |Dereference Pointer+5|\n");
-    printf("    s2       |  %p   |  |         %s      |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |\n",&s2,s2,*s2,*(s2+1),*(s2+2),*(s2+3),*(s2+4),*(s2+5));
-    printf("    s2       |  %p   |  |         %s      |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |\n",&s2,s2,s2[0],s2[1],s2[2],s2[3],s2[4],s2[5]);    
+    printf("____________  ______________________    ____________________    _____________________    _____________________    _____________________    _____________________    _____________________    _____________________\n");
+    printf("VariableName |    Memory Adress     |  |    Value Stored    |  | Dereference Pointer |  |Dereference Pointer+1|  |Dereference Pointer+2|  |Dereference Pointer+3|  |Dereference Pointer+4|  |Dereference Pointer+5|\n");
+    printf("    s2       |   %p   |  |         %s      |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c          |\n",&s2,s2,*s2,*(s2+1),*(s2+2),*(s2+3),*(s2+4),*(s2+5));
+    printf("    s2       |   %p   |  |         %s      |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c         |  |           %c          |\n",&s2,s2,s2[0],s2[1],s2[2],s2[3],s2[4],s2[5]);    
     printf("\n");
     for (int i=0;i<10;i++){
         printf("caractere de s2[%i]=%c, o código desse caractere é %i, o memory adress desse caractere é %p\n",i,s2[i],s2[i],&s2[i]);
@@ -113,10 +119,10 @@ int main(void)
 
     //Recursion vs Loop
     printf("\n-------RECURSION vs LOOP-------\n");
-    // loop(4);
-    // recursion(5);
-    // int dsad = fatorial(5);
-    // printf("%i\n",dsad);
+    loop(4);
+    recursion(5);
+    int fat = fatorial(5);
+    printf("%i\n",fat);
 
     return 0;
 }
