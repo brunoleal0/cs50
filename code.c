@@ -17,7 +17,7 @@ int main(void)
     //ARRAYS
     int v[4];
     for (int i=0;i<4;i++){
-        v[i]=i+10;
+        v[i]=10+i;
         printf("v[%i]=%i\n",i,v[i]);
     }
 
@@ -25,7 +25,7 @@ int main(void)
     printf("\n-------POINTERS-------\n");
     int *pAge = NULL;
     int age = 20;
-    printf("int age = 20;\nint *pAge = NULL;\n");
+    printf("int age = %i;\nint *pAge = NULL;\n",age);
 
     // printf("%f",*pAge); //Não dá pra derefenciar algo que ainda não tem referência
     printf("____________  ______________________    ______________________    _____________________\n");
@@ -46,16 +46,55 @@ int main(void)
 
     printf("____________  ______________________    ______________________    _____________________\n");
     printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
-    printf("    pAge     |   %p   |  |   %p   |  |         %i          |\n",&pAge,pAge,*pAge);
-    printf("    age      |   %p   |  |          %i          |  |                     |\n",&age,age);
+    printf("    pAge     |   %p   |  |---%p---|  |         %i          |\n",&pAge,pAge,*pAge);
+    printf("    age      |---%p---|  |          %i          |  |                     |\n",&age,age);
 
-    printf("\n*age = 22;\n");
+    printf("\nage = 22;\n");
     age = 22;
 
     printf("____________  ______________________    ______________________    _____________________\n");
     printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
-    printf("    pAge     |   %p   |  |   %p   |  |         %i          |\n",&pAge,pAge,*pAge);
-    printf("    age      |   %p   |  |          %i          |  |                     |\n",&age,age);
+    printf("    pAge     |   %p   |  |---%p---|  |         %i          |\n",&pAge,pAge,*pAge);
+    printf("    age      |---%p---|  |          %i          |  |                     |\n",&age,age);
+    printf("\n");
+
+    // Memmory Deallocation (freeing memory to avoid memory leak)
+    int *pAge2 = malloc(sizeof(pAge));
+    *pAge2 = *pAge; // A dereferencia eh igual, mas o Value Stored eh diferente .:. se mudar a derefenrecia em pAge nao muda automaticamente em pAge2
+    printf("int *pAge2 = malloc(sizeof(pAge));\n");
+    printf("*pAge2 = *pAge; <- A dereferencia eh igual, mas o Value Stored eh diferente .:. se mudar a derefenrecia em pAge nao muda automaticamente em pAge2\n");
+    printf("____________  ______________________    ______________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
+    printf("    pAge2    |   %p   |  |   %p   |  |---------%i----------|\n",&pAge2,pAge2,*pAge2);
+    printf("    pAge     |   %p   |  |---%p---|  |---------%i----------|\n",&pAge,pAge,*pAge);
+    printf("    age      |---%p---|  |----------%i----------|  |                     |\n",&age,age);
+    printf("\n");
+
+    age=23;
+    printf("age=23;\n");
+    printf("____________  ______________________    ______________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
+    printf("    pAge2    |   %p   |  |   %p   |  |         %i          |\n",&pAge2,pAge2,*pAge2);
+    printf("    pAge     |   %p   |  |---%p---|  |---------%i----------|\n",&pAge,pAge,*pAge);
+    printf("    age      |---%p---|  |----------%i----------|  |                     |\n",&age,age);
+    printf("\n");
+
+    free(pAge2);
+    printf("free(pAge2);\n");
+    printf("____________  ______________________    ______________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
+    printf("    pAge2    |   %p   |  |   %p   |  |       %i       |\n",&pAge2,pAge2,*pAge2);
+    printf("    pAge     |   %p   |  |---%p---|  |---------%i----------|\n",&pAge,pAge,*pAge);
+    printf("    age      |---%p---|  |----------%i----------|  |                     |\n",&age,age);
+    printf("\n");
+
+    pAge2=NULL;
+    printf("pAge2=NULL;\n");
+    printf("____________  ______________________    ______________________    _____________________\n");
+    printf("VariableName |     Memory Adress    |  |    Value Stored      |  | Dereference Pointer |\n");
+    printf("    pAge2    |  Segmentation Fault  |  |  Segmentation Fault  |  |  Segmentation Fault |\n");
+    printf("    pAge     |   %p   |  |---%p---|  |---------%i----------|\n",&pAge,pAge,*pAge);
+    printf("    age      |---%p---|  |----------%i----------|  |                     |\n",&age,age);
     printf("\n");
 
     printf("\nSWAP WRONG\n");
@@ -115,9 +154,17 @@ int main(void)
     printf("*s1=%c s2[0]=%c \n",*s1,s2[0]);
     s2[0]='a'; // Array é modificável <- Tem quer ser single quotes por isso: https://stackoverflow.com/questions/3683602/single-quotes-vs-double-quotes-in-c-or-c
     printf("*s1=%c s2[0]=%c \n",*s1,s2[0]);
-    printf("s1=%s s2=%s",s1,s2);
+    printf("s1=%s s2=%s\n",s1,s2);
     // s1[0]='a'; // Erro de Segmentation (pointer não é modificável)
     // printf("s1[0]=%c s2[0]=%c \n",s1[0],s2[0]);
+
+    // idealmente inicializa variaveis com malloc pra garantir espaoc na memoria
+    char *s3 = malloc(6);
+    for (int i = 0; i<6 ; i++){
+        s3[i]=s2[i];
+        printf("s2[%i]=%c s3[%i]=%c\n",i,s2[i],i,s3[i]);
+    }
+    printf("s3=%s\n",s3);
 
     //Recursion vs Loop
     printf("\n-------RECURSION vs LOOP-------\n");
