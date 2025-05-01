@@ -59,7 +59,8 @@ int main(void)
     printf("\n");
 
     // Memmory Deallocation (freeing memory to avoid memory leak)
-    int *pAge2 = malloc(sizeof(pAge));
+    int *pAge2 = malloc(sizeof(pAge)); //malloc retorna NULL se nao houver mais memoria no programa
+    //realloc serve pra realocar uma memoria previamente allocada (qdo vc quer aumentar o tamanho (fixo) de uma lista, por exemplo) https://youtu.be/LfaMVlDaQ24?t=43249
     *pAge2 = *pAge; // A dereferencia eh igual, mas o Value Stored eh diferente .:. se mudar a derefenrecia em pAge nao muda automaticamente em pAge2
     printf("int *pAge2 = malloc(sizeof(pAge));\n");
     printf("*pAge2 = *pAge; <- A dereferencia eh igual, mas o Value Stored eh diferente .:. se mudar a derefenrecia em pAge nao muda automaticamente em pAge2\n");
@@ -172,6 +173,11 @@ int main(void)
     recursion(5);
     int fat = fatorial(5);
     printf("%i\n",fat);
+
+
+    // Linked List https://youtu.be/ZNjg_7nxsz4?t=390
+
+
 
     return 0;
 }
