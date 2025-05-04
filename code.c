@@ -9,11 +9,12 @@ void swap_right(int *x, int*y);
 void loop (int tamanho);
 void recursion(int tamanho);
 int fatorial(int numero);
+void selection_sort();
 
 int main(void)
 {
     printf("Hello, World!\n"); //<- Tem quer ser double quotes por isso: https://stackoverflow.com/questions/3683602/single-quotes-vs-double-quotes-in-c-or-c
-
+    selection_sort();
     //ARRAYS
     int v[4];
     for (int i=0;i<4;i++){
@@ -222,5 +223,50 @@ int fatorial(int numero){
     }
     if (numero==1){
         return 1;
+    }
+}
+
+void selection_sort(){ //https://www.youtube.com/watch?v=EwjnF7rFLns <- eh diferente do selection sort do cs50
+    int *vetor1 = malloc(7*sizeof(int));
+    vetor1[0]=12;
+    vetor1[1]=23;
+    vetor1[2]=4;
+    vetor1[3]=30;
+    vetor1[4]=7;
+    vetor1[5]=45;
+    vetor1[6]=32;
+    vetor1[7]=1;
+    int tamanho=8;
+    int lixo;
+    int xminvalor;
+    int xminposicao;
+
+    for (int i=0;i<tamanho;i++){
+        printf("vetor1[%i]=%i\n",i,vetor1[i]);
+    }
+
+    for (int i=0;i<tamanho;i++){ //O(n²)
+        printf("\niteracao %i\n",i);
+        lixo = vetor1[i]; //salva o valor da celula
+        xminvalor = vetor1[i];
+        xminposicao=i;
+        for (int x=i;x<tamanho;x++){
+            if (vetor1[x]<xminvalor){
+                xminvalor = vetor1[x];
+                xminposicao = x;
+            }
+        }
+        if (xminposicao != i){
+            vetor1[xminposicao]=vetor1[i];
+            vetor1[i]=xminvalor;
+        }
+
+        for (int i=0;i<tamanho;i++){
+            printf("vetor1[%i]=%i\n",i,vetor1[i]);
+        }
+    }
+
+    for (int i=0;i<tamanho;i++){
+        printf("numeros do vetor: %i \n",vetor1[i]);
     }
 }
