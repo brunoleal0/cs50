@@ -226,7 +226,11 @@ int fatorial(int numero){
     }
 }
 
-void selection_sort(){ //https://www.youtube.com/watch?v=EwjnF7rFLns <- eh diferente do selection sort do cs50
+void bubble_sort(){ // O(n²) trocar posicoes 2 a 2 ate sortear
+
+}
+
+void selection_sort(){ // O(n²) https://www.youtube.com/watch?v=EwjnF7rFLns <- eh diferente do selection sort do cs50
     int *vetor1 = malloc(7*sizeof(int));
     vetor1[0]=12;
     vetor1[1]=23;
@@ -245,7 +249,7 @@ void selection_sort(){ //https://www.youtube.com/watch?v=EwjnF7rFLns <- eh difer
         printf("vetor1[%i]=%i\n",i,vetor1[i]);
     }
 
-    for (int i=0;i<tamanho;i++){ //O(n²)
+    for (int i=0;i<tamanho;i++){
         printf("\niteracao %i\n",i);
         lixo = vetor1[i]; //salva o valor da celula
         xminvalor = vetor1[i];
@@ -269,4 +273,8 @@ void selection_sort(){ //https://www.youtube.com/watch?v=EwjnF7rFLns <- eh difer
     for (int i=0;i<tamanho;i++){
         printf("numeros do vetor: %i \n",vetor1[i]);
     }
+}
+
+void heap_sort(){ //O(n*log(n))
+
 }
