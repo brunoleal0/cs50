@@ -10,6 +10,8 @@ void loop (int tamanho);
 void recursion(int tamanho);
 int fatorial(int numero);
 void selection_sort();
+void arvore();
+int aloca_na_BST();
 
 int main(void)
 {
@@ -180,7 +182,33 @@ int main(void)
 
 
 
+    // (Balanced) Binary Search Tree (BST) - O(logn): Pointers sao as estrutura basica de um arvore https://youtu.be/LfaMVlDaQ24?t=46940 https://www.youtube.com/watch?v=COZK7NATh4k https://www.youtube.com/watch?v=UbhlOk7vjVY
+    arvore();
+
     return 0;
+}
+
+// struct: https://www.youtube.com/watch?v=oKXP1HZ8xIs
+typedef struct treenode{ //3 dados em um no: o Valor armazenado, um pointer pra esquerda, um pointer pra direita
+    int value;
+    struct treenode *left;
+    struct treenode *right;
+} treenode;
+
+// criando o node 0 da árvore
+
+void arvore(){
+    treenode *node0 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
+    node0 -> value = 100;
+    node0 -> left = NULL;
+    node0 -> right = NULL;
+    printf("dasfdsgdfg %i\n", node0 -> value);
+
+    aloca_na_BST(10);
+}
+
+int aloca_na_BST(){
+
 }
 
 void swap_wrong(int x, int y){ //https://youtu.be/LfaMVlDaQ24?t=39496
