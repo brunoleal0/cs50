@@ -10,8 +10,8 @@ void loop (int tamanho);
 void recursion(int tamanho);
 int fatorial(int numero);
 void selection_sort();
-void arvore();
-int aloca_na_BT();
+void LL2BC();
+void linked_list_2branches_crescente();
 
 int main(void)
 {
@@ -180,11 +180,11 @@ int main(void)
 
     // Linked List https://youtu.be/ZNjg_7nxsz4?t=390
 
-
-
-    // (Balanced) Binary Tree (BT) - O(logn): Pointers sao as estrutura basica de um arvore https://youtu.be/LfaMVlDaQ24?t=46940 https://www.youtube.com/watch?v=COZK7NATh4k https://www.youtube.com/watch?v=UbhlOk7vjVY
-    printf("\n-------BINARY TREE-------\n");
-    arvore();
+    
+    // Binary Search Tree (BST) - O(logn): Pointers sao as estrutura basica de um arvore https://youtu.be/LfaMVlDaQ24?t=46940 https://www.youtube.com/watch?v=COZK7NATh4k https://www.youtube.com/watch?v=UbhlOk7vjVY https://www.geeksforgeeks.org/types-of-binary-tree/
+    printf("\n-------BINARY SEARCH TREE-------\n");
+    LL2BC(); //Linked List 2 Branches Crescentes - eh uma BST com 2 branches, com excessao do original, cada node soh tem um filho
+    //BPLUS TREE https://www.youtube.com/watch?v=K1a2Bk8NrYQ&t=79s
 
     return 0;
 }
@@ -197,14 +197,12 @@ typedef struct treenode{ //4 dados em um no: o Valor armazenado, um pointer pra 
     struct treenode *volta;
 } treenode;
 
-// criando o node0 da árvore
-
-void arvore(){
+void LL2BC(){
     printf("\nsizeof(treenode)==%i\n",sizeof(treenode));
-    
+
     printf("--criando node0\n");
     treenode *node0 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
-    node0 -> value = 100;
+    node0 -> value = 0;
     node0 -> leftida = NULL;
     node0 -> rightida = NULL;
     node0 -> volta = NULL;
@@ -213,7 +211,7 @@ void arvore(){
 
     printf("--criando node1\n");
     treenode *node1 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
-    node1 -> value = 50;
+    node1 -> value = -100;
     node1 -> leftida = NULL;
     node1 -> rightida = NULL;
     node1 -> volta = NULL;
@@ -222,46 +220,55 @@ void arvore(){
 
     printf("--criando node2\n");
     treenode *node2 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
-    node2 -> value = 30;
+    node2 -> value = -50;
     node2 -> leftida = NULL;
     node2 -> rightida = NULL;
     node2 -> volta = NULL;
     printf("value node1==%i\n", node2 -> value);
-    printf("lugar na memória de node1==%p\n",node2);
+    printf("lugar na memória de node2==%p\n",node2);
 
     printf("--criando node3\n");
     treenode *node3 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
-    node3 -> value = 110;
+    node3 -> value = -70;
     node3 -> leftida = NULL;
     node3 -> rightida = NULL;
     node3 -> volta = NULL;
     printf("value node1==%i\n", node3 -> value);
-    printf("lugar na memória de node1==%p\n",node3);
+    printf("lugar na memória de node3==%p\n",node3);
 
     printf("--criando node4\n");
     treenode *node4 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
-    node4 -> value = 120;
+    node4 -> value = 100;
     node4 -> leftida = NULL;
     node4 -> rightida = NULL;
     node4 -> volta = NULL;
     printf("value node1==%i\n", node4 -> value);
-    printf("lugar na memória de node1==%p\n",node4);
+    printf("lugar na memória de node4==%p\n",node4);
 
     printf("--criando node5\n");
     treenode *node5 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
-    node5 -> value = 150;
+    node5 -> value = 50;
     node5 -> leftida = NULL;
     node5 -> rightida = NULL;
     node5 -> volta = NULL;
     printf("value node1==%i\n", node5 -> value);
-    printf("lugar na memória de node1==%p\n",node5);
+    printf("lugar na memória de node5==%p\n",node5);
 
-    aloca_na_BT(node0, node1);
-    aloca_na_BT(node0, node2);
-    aloca_na_BT(node0, node3);
-    aloca_na_BT(node0, node4);
-    aloca_na_BT(node0, node5);
+    printf("--criando node6\n");
+    treenode *node6 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
+    node6 -> value = 70;
+    node6 -> leftida = NULL;
+    node6 -> rightida = NULL;
+    node6 -> volta = NULL;
+    printf("value node1==%i\n", node6 -> value);
+    printf("lugar na memória de node6==%p\n",node6);
 
+    linked_list_2branches_crescente(node0, node1);
+    linked_list_2branches_crescente(node0, node2);
+    linked_list_2branches_crescente(node0, node3);
+    linked_list_2branches_crescente(node0, node4);
+    linked_list_2branches_crescente(node0, node5);
+    linked_list_2branches_crescente(node0, node6);
 
     printf("\n--APÓS TODAS AS ALOCAÇÕES:\n");
     printf("node0: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node0->value,node0,node0->leftida,node0->rightida,node0->volta);
@@ -270,44 +277,67 @@ void arvore(){
     printf("node3: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node3->value,node3,node3->leftida,node3->rightida,node3->volta);
     printf("node4: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node4->value,node4,node4->leftida,node4->rightida,node4->volta);
     printf("node5: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node5->value,node5,node5->leftida,node5->rightida,node5->volta);
+    printf("node6: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node6->value,node6,node6->leftida,node6->rightida,node6->volta);
 }
 
-int aloca_na_BT(treenode *node0, treenode *node){
-    printf("--Rodando alocação");
-    printf("lugar na memória do node0==%p\n",node0);
-    printf("value node0==%i\n", node0 -> value);
-    printf("lugar na memória do node==%p\n",node);
-    printf("value node==%i\n", node -> value);
-
+void linked_list_2branches_crescente(treenode *node0, treenode *node){
+    printf("\n--Rodando alocação");
     treenode *ptr = node0; //pointer inicial do loop eh sempre no node0
-    while(ptr!=NULL){
+    // printf("++node0=%p ptr=%p\n",node0,ptr);
+    
+    int loop=1;
+    while(loop==1){ //isso eh basicamente uma linked list dupla em ordem crescente
         if((node->value)<=(ptr->value)){
             if(ptr->leftida==NULL){
-                ptr->leftida=node;
                 node->volta=ptr;
-                ptr=NULL;
+                ptr->leftida=node;
+                loop=0;
             }
-            else{
+            else if ((node->value)<=((ptr->leftida)->value)){
+                //pula pro proximo
                 ptr=ptr->leftida;
             }
+            else if ((node->value)>((ptr->leftida)->value)){
+                //pluga, muda as conexões e encerra o while
+                node->volta=ptr;
+                (node->leftida)=(ptr->leftida);
+                (ptr->leftida)->volta=node;
+                ptr->leftida=node;
+                loop=0;
+            }
         }
+        //
         else{
             if(ptr->rightida==NULL){
                 ptr->rightida=node;
                 node->volta=ptr;
-                ptr=NULL;
+                loop=0;
             }
-            else{
+            else if((node->value)<=((ptr->rightida)->value)){
+                //pluga, muda as conexões e encerra o while
+                node->volta=ptr;
+                (node->rightida)=(ptr->rightida);
+                (ptr->rightida)->volta=node;
+                ptr->rightida=node;
+                loop=0;
+            }
+            else if((node->value)>((ptr->rightida)->value)){
+                //pula pro proximo
                 ptr=ptr->rightida;
             }
         }
         printf("roda while\n");
     }
+
+    printf("lugar na memória do node0==%p\n",node0);
+    printf("value node0==%i\n", node0 -> value);
+    printf("lugar na memória do node==%p\n",node);
+    printf("value node==%i\n", node -> value);
     printf("node0leftida=%p\n",(node0->leftida));
     printf("node0rightida=%p\n",(node0->rightida));
+    printf("nodeleftida=%p\n",(node->leftida));
+    printf("noderightida=%p\n",(node->rightida));
     printf("nodevolta=%p\n",(node->volta));
-
-    return 0;
 }
 
 void swap_wrong(int x, int y){ //https://youtu.be/LfaMVlDaQ24?t=39496
