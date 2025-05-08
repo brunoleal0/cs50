@@ -11,7 +11,7 @@ void recursion(int tamanho);
 int fatorial(int numero);
 void selection_sort();
 void arvore();
-int aloca_na_BST();
+int aloca_na_BT();
 
 int main(void)
 {
@@ -182,33 +182,132 @@ int main(void)
 
 
 
-    // (Balanced) Binary Search Tree (BST) - O(logn): Pointers sao as estrutura basica de um arvore https://youtu.be/LfaMVlDaQ24?t=46940 https://www.youtube.com/watch?v=COZK7NATh4k https://www.youtube.com/watch?v=UbhlOk7vjVY
+    // (Balanced) Binary Tree (BT) - O(logn): Pointers sao as estrutura basica de um arvore https://youtu.be/LfaMVlDaQ24?t=46940 https://www.youtube.com/watch?v=COZK7NATh4k https://www.youtube.com/watch?v=UbhlOk7vjVY
+    printf("\n-------BINARY TREE-------\n");
     arvore();
 
     return 0;
 }
 
-// struct: https://www.youtube.com/watch?v=oKXP1HZ8xIs
-typedef struct treenode{ //3 dados em um no: o Valor armazenado, um pointer pra esquerda, um pointer pra direita
+// struct: https://www.youtube.com/watch?v=oKXP1HZ8xIs <- eh basicamente uma classe
+typedef struct treenode{ //4 dados em um no: o Valor armazenado, um pointer pra esquerda, um pointer pra direita, um pointer de volta
     int value;
-    struct treenode *left;
-    struct treenode *right;
+    struct treenode *leftida;
+    struct treenode *rightida;
+    struct treenode *volta;
 } treenode;
 
-// criando o node 0 da árvore
+// criando o node0 da árvore
 
 void arvore(){
+    printf("\nsizeof(treenode)==%i\n",sizeof(treenode));
+    
+    printf("--criando node0\n");
     treenode *node0 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
     node0 -> value = 100;
-    node0 -> left = NULL;
-    node0 -> right = NULL;
-    printf("dasfdsgdfg %i\n", node0 -> value);
+    node0 -> leftida = NULL;
+    node0 -> rightida = NULL;
+    node0 -> volta = NULL;
+    printf("value node0==%i\n", node0 -> value);
+    printf("lugar na memória de node0==%p\n",node0);
 
-    aloca_na_BST(10);
+    printf("--criando node1\n");
+    treenode *node1 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
+    node1 -> value = 50;
+    node1 -> leftida = NULL;
+    node1 -> rightida = NULL;
+    node1 -> volta = NULL;
+    printf("value node1==%i\n", node1 -> value);
+    printf("lugar na memória de node1==%p\n",node1);
+
+    printf("--criando node2\n");
+    treenode *node2 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
+    node2 -> value = 30;
+    node2 -> leftida = NULL;
+    node2 -> rightida = NULL;
+    node2 -> volta = NULL;
+    printf("value node1==%i\n", node2 -> value);
+    printf("lugar na memória de node1==%p\n",node2);
+
+    printf("--criando node3\n");
+    treenode *node3 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
+    node3 -> value = 110;
+    node3 -> leftida = NULL;
+    node3 -> rightida = NULL;
+    node3 -> volta = NULL;
+    printf("value node1==%i\n", node3 -> value);
+    printf("lugar na memória de node1==%p\n",node3);
+
+    printf("--criando node4\n");
+    treenode *node4 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
+    node4 -> value = 120;
+    node4 -> leftida = NULL;
+    node4 -> rightida = NULL;
+    node4 -> volta = NULL;
+    printf("value node1==%i\n", node4 -> value);
+    printf("lugar na memória de node1==%p\n",node4);
+
+    printf("--criando node5\n");
+    treenode *node5 = malloc(sizeof(treenode)); //https://stackoverflow.com/questions/26206667/do-we-have-to-malloc-a-struct
+    node5 -> value = 150;
+    node5 -> leftida = NULL;
+    node5 -> rightida = NULL;
+    node5 -> volta = NULL;
+    printf("value node1==%i\n", node5 -> value);
+    printf("lugar na memória de node1==%p\n",node5);
+
+    aloca_na_BT(node0, node1);
+    aloca_na_BT(node0, node2);
+    aloca_na_BT(node0, node3);
+    aloca_na_BT(node0, node4);
+    aloca_na_BT(node0, node5);
+
+
+    printf("\n--APÓS TODAS AS ALOCAÇÕES:\n");
+    printf("node0: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node0->value,node0,node0->leftida,node0->rightida,node0->volta);
+    printf("node1: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node1->value,node1,node1->leftida,node1->rightida,node1->volta);
+    printf("node2: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node2->value,node2,node2->leftida,node2->rightida,node2->volta);
+    printf("node3: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node3->value,node3,node3->leftida,node3->rightida,node3->volta);
+    printf("node4: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node4->value,node4,node4->leftida,node4->rightida,node4->volta);
+    printf("node5: valor=%i memória=%p leftida=%p rightida=%p volta=%p\n",node5->value,node5,node5->leftida,node5->rightida,node5->volta);
 }
 
-int aloca_na_BST(){
+int aloca_na_BT(treenode *node0, treenode *node){
+    printf("--Rodando alocação");
+    printf("lugar na memória do node0==%p\n",node0);
+    printf("value node0==%i\n", node0 -> value);
+    printf("lugar na memória do node==%p\n",node);
+    printf("value node==%i\n", node -> value);
 
+    treenode *ptr = node0; //pointer inicial do loop eh sempre no node0
+    while(ptr!=NULL){
+        if((node->value)<=(ptr->value)){
+            if(ptr->leftida==NULL){
+                ptr->leftida=node;
+                node->volta=ptr;
+                ptr=NULL;
+            }
+            else{
+                ptr=ptr->leftida;
+            }
+        }
+        else{
+            if(ptr->rightida==NULL){
+                ptr->rightida=node;
+                node->volta=ptr;
+                ptr=NULL;
+            }
+            else{
+                ptr=ptr->rightida;
+            }
+        }
+        printf("roda while\n");
+    }
+    printf("node0leftida=%p\n",(node0->leftida));
+    printf("node0rightida=%p\n",(node0->rightida));
+    printf("nodevolta=%p\n",(node->volta));
+
+    return 0;
 }
 
 void swap_wrong(int x, int y){ //https://youtu.be/LfaMVlDaQ24?t=39496
