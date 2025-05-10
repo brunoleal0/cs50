@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h> 
+#include <stdbool.h> // inclui o tipo bool
 
 //prototypes <- serve pra rodar no main as funções que são declaradas depois do main
 void swap_wrong(int x, int y);
@@ -12,6 +13,7 @@ int fatorial(int numero);
 void selection_sort();
 void LL2BC();
 void linked_list_2branches_crescente();
+void BPLUS();
 
 int main(void)
 {
@@ -177,17 +179,66 @@ int main(void)
     int fat = fatorial(5);
     printf("%i\n",fat);
 
-
+    printf("\n-------LINKED LIST-------\n");
     // Linked List https://youtu.be/ZNjg_7nxsz4?t=390
-
-    
-    // Binary Search Tree (BST) - O(logn): Pointers sao as estrutura basica de um arvore https://youtu.be/LfaMVlDaQ24?t=46940 https://www.youtube.com/watch?v=COZK7NATh4k https://www.youtube.com/watch?v=UbhlOk7vjVY https://www.geeksforgeeks.org/types-of-binary-tree/
-    printf("\n-------BINARY SEARCH TREE-------\n");
     LL2BC(); //Linked List 2 Branches Crescentes - eh uma BST com 2 branches, com excessao do original, cada node soh tem um filho
-    //BPLUS TREE https://www.youtube.com/watch?v=K1a2Bk8NrYQ&t=79s
 
+    // Binary Search Tree (BST): Pointers sao as estrutura basica de um arvore https://youtu.be/LfaMVlDaQ24?t=46940 https://www.youtube.com/watch?v=COZK7NATh4k https://www.youtube.com/watch?v=UbhlOk7vjVY https://www.geeksforgeeks.org/types-of-binary-tree/
+    printf("\n-------B+ TREE-------\n");
+    //BPLUS TREE O(logn) - usado em SQL https://youtu.be/UuncWF0Kuhw?list=PLXAjOiPf89kP8wP-njE2o0y9qnrwt6xUd&t=312 https://www.youtube.com/watch?v=K1a2Bk8NrYQ&t=79s
+    BPLUS(); //https://www.geeksforgeeks.org/implementation-of-b-plus-tree-in-c/
     return 0;
 }
+
+void btree_create();
+void btree_insert();
+void cria_dados();
+
+typedef struct btreenode{
+    int *values; //array com os valores daquele node
+    int *idas; //pointers de ida daquele node
+    bool leaf; //se o node eh leaf
+    bool root; //se o node eh root
+} btreenode;
+
+typedef struct dados_no_sql{
+    char *nome; //"string"
+    int idade; //idade
+    bool sexo; //Boolean: Feminino==true e Masculino==false
+    char estado_civil; //caractere indicando Estado Civil
+} dados_no_sql;
+
+void BPLUS(){
+    dados_no_sql *dado1=malloc(sizeof(dados_no_sql));
+    char *nome1="Bruno";
+    cria_dados(*dado1,*nome1,33,false,'S');
+
+
+    int btree_order = 4;
+    // criando o node0 da tree
+    btreenode *node0= malloc(sizeof(btreenode));
+    node0->root=true; node0->leaf=false;
+
+    btree_insert(btree_order, node0, 20);
+    printf("%p\n",node0);
+}
+
+void cria_dados(dados_no_sql *dado,char *nome,int idade, bool sexo, char estado_civil){
+
+
+}
+
+//-------------------------------------------------------------------- CRIANDO UMA B+ TREE --------------------------------------------------------------------//
+
+void btree_insert(int order,btreenode *node, int value){ //insere um value num leaf node e executa todos os procedimentos necessarios pra balancear a tree
+    if ((node->root)==true){
+        if()
+    }
+}
+
+
+
+//-------------------------------------------------------------------- ACABOU DE CRIAR UMA B+ TREE --------------------------------------------------------------------//
 
 // struct: https://www.youtube.com/watch?v=oKXP1HZ8xIs <- eh basicamente uma classe
 typedef struct treenode{ //4 dados em um no: o Valor armazenado, um pointer pra esquerda, um pointer pra direita, um pointer de volta
@@ -435,3 +486,4 @@ void selection_sort(){ // O(n²) https://www.youtube.com/watch?v=EwjnF7rFLns <- 
 void heap_sort(){ //O(n*log(n))
 
 }
+
