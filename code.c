@@ -190,10 +190,6 @@ int main(void)
     return 0;
 }
 
-void btree_create();
-void btree_insert();
-void cria_dados();
-
 typedef struct btreenode{
     int *values; //array com os valores daquele node
     int *idas; //pointers de ida daquele node
@@ -208,10 +204,14 @@ typedef struct dados_no_sql{
     char estado_civil; //caractere indicando Estado Civil
 } dados_no_sql;
 
+void btree_create();
+void btree_insert();
+void cria_dados(dados_no_sql *dado, char *nome, int idade, bool sexo, char estado_civil);
+
 void BPLUS(){
     dados_no_sql *dado1=malloc(sizeof(dados_no_sql));
     char *nome1="Bruno";
-    cria_dados(*dado1,*nome1,33,false,'S');
+    cria_dados(dado1,nome1,33,false,'S');
 
 
     int btree_order = 4;
@@ -223,16 +223,20 @@ void BPLUS(){
     printf("%p\n",node0);
 }
 
-void cria_dados(dados_no_sql *dado,char *nome,int idade, bool sexo, char estado_civil){
-
-
+void cria_dados(dados_no_sql *dado, char *nome, int idade, bool sexo, char estado_civil){
+    printf("Roda cria_dados");
 }
 
 //-------------------------------------------------------------------- CRIANDO UMA B+ TREE --------------------------------------------------------------------//
 
 void btree_insert(int order,btreenode *node, int value){ //insere um value num leaf node e executa todos os procedimentos necessarios pra balancear a tree
     if ((node->root)==true){
-        if()
+        if(1==1){
+            printf("asdasd");
+        }
+    }
+    else{
+        printf("adsasd");
     }
 }
 
